@@ -5,19 +5,18 @@ const bodyParser = require('body-parser')
 const userController = require('./controller/UserController');
 const MentorController = require('./controller/MentorController')
 const StudentController = require('./controller/StudentController')
-
 const dotenv = require('dotenv');
-const db = require('./config/database');
 const { sqlDatabase } = require('./config/sqlDatabase');
+const fileUpload = require('express-fileupload');
 
 dotenv.config()
 
-db()
 
 sqlDatabase()
 
 app.use(cors())
 app.use(express.static(__dirname))
+app.use(fileUpload());
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())

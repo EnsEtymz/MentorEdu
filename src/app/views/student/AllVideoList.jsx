@@ -1,11 +1,5 @@
 import React from "react";
-
-import { CardMedia, Grid } from "@mui/material";
-
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { Grid } from "@mui/material";
 import { useEffect } from "react";
 import { useState } from "react";
 import RCard from "app/components/HomePageComponents/RCard";
@@ -30,7 +24,7 @@ const AllVideoList = () => {
         };
 
         fetchData();
-    }, []);
+    });
 
 
 
@@ -40,7 +34,7 @@ const AllVideoList = () => {
             {data.map((veri) => {
                 return (
                     <Grid item key={veri.url} xs={12} sm={6} md={3}>
-                        <RCard id_edu={veri.id_edu} username={veri.username} title={veri.title} content={veri.content} category={veri.category} />
+                        <RCard id_edu={veri.id_edu} username={veri.username} title={veri.title} content={veri.content} category={veri.category} click={veri.click} image_url={veri.image_url} />
                     </Grid>
                 )
             }

@@ -1,14 +1,9 @@
 import React from "react";
-
-import { CardMedia, Grid } from "@mui/material";
-
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { Grid } from "@mui/material";
 import { useEffect } from "react";
 import { useState } from "react";
 import RCard from "app/components/HomePageComponents/RCard";
+import { Link } from "react-router-dom";
 
 
 const VideoListId = () => {
@@ -41,17 +36,21 @@ const VideoListId = () => {
 
 
     return (
-        <Grid container spacing={9}>
-            {data.map((veri) => {
-                return (
-                    <Grid item key={veri.url} xs={12} sm={6} md={3}>
-                        <RCard username={veri.username} title={veri.title} content={veri.content} category={veri.category} />
-                    </Grid>
-                )
-            }
+        <>
+            <Grid container spacing={9}>
+                {data.map((veri) => {
+                    return (
+                        <Grid item key={veri.url} xs={12} sm={6} md={3}>
+                            <Link to={`/mentor/videoHome/${veri.id_edu}`} >
+                                <RCard username={veri.username} title={veri.title} content={veri.content} category={veri.category} click={veri.click} image_url={veri.image_url} /></Link>
+                        </Grid>
+                    )
+                }
 
-            )}
-        </Grid >
+                )}
+            </Grid >
+
+        </>
     )
 }
 

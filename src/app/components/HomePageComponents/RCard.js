@@ -11,6 +11,8 @@ const RCard = (props) => {
     const title = props.title ? props.title : 'Sıfırdan İleri Seviye Vue.JS Eğitimi ve Uygulama Geliştirme';
     //  const content = props.content ? props.content : '';
     const category = props.category ? props.category : ''
+    const click = props.click
+    const image_url = props.image_url ? props.image_url : 'https://mui.com/static/images/cards/contemplative-reptile.jpg';
 
     const handleCardClick = async (id_edu) => {
         // Sunucuya tıklama bilgisini ileten API endpoint'i
@@ -35,12 +37,14 @@ const RCard = (props) => {
 
 
     return (
-        <Card sx={{ maxWidth: 345, marginBottom: 6, marginLeft: 'auto', marginRight: 'auto' }}>
+        <Card sx={{ maxWidth: 345, marginBottom: 6, marginLeft: 'auto', marginRight: 'auto', height: 330 }}>
             <CardActionArea onClick={() => { handleCardClick(props.id_edu) }} >
+
+
                 <CardMedia
                     component="img"
                     height="140"
-                    image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
+                    image={image_url}
                     alt="green iguana"
                 />
                 <CardContent>
@@ -52,6 +56,9 @@ const RCard = (props) => {
                         {username} -  {category}
                     </Typography>
                     <Rating name="read-only" value={3} readOnly />
+                    <Typography variant='body1' >
+                        👁️‍🗨️{click}
+                    </Typography>
 
                 </CardContent>
             </CardActionArea>

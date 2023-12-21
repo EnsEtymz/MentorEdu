@@ -22,6 +22,15 @@ const CreateEdu = () => {
     const [content, setContent] = useState('');
     const [category, setCategory] = useState('');
     const categories = ["Frontend", "Backend", "Veri Tabanı", "Oyun Geliştirme", "Mobil Geliştirme"];
+    const [selectedFile, setSelectedFile] = useState('');
+    const [selectedFileName, setSelectedFileName] = useState('');
+
+
+    const handleFileChange = async (event) => {
+        const file = event.target.files[0]; // Sadece bir dosya seçileceği için ilk dosyayı al
+        setSelectedFile(file);
+        setSelectedFileName(file.name); // Do
+    };
 
     const storedUser = localStorage.getItem('user');
     const username = JSON.parse(storedUser).username
@@ -31,18 +40,17 @@ const CreateEdu = () => {
 
     const Create = async () => {
         try {
-            // Örneğin, fetch veya axios kullanarak POST isteği
+
+            const formData = new FormData();
+            formData.append('file', selectedFile);
+            formData.append('username', username);
+            formData.append('title', title);
+            formData.append('content', content);
+            formData.append('category', category);
+
             const response = await fetch('http://localhost:4000/mentor/create', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    username,
-                    title,
-                    content,
-                    category
-                }),
+                body: formData
             });
             const jsonResponse = await response.json()
 
@@ -187,9 +195,22 @@ const CreateEdu = () => {
                             </Grid>
 
                             <Grid item xs={12} sm={4}>
-                                <Button>
-                                    <UploadFileIcon />
+                                <Button >
+                                    <input
+                                        accept="image/*"
+                                        className="input"
+                                        id="outlined-button-file"
+                                        type="file"
+                                        style={{ display: 'none' }}
+                                        onChange={handleFileChange}
+                                    />
+                                    <label htmlFor="outlined-button-file">
+                                        <UploadFileIcon />
+                                    </label>
                                 </Button>
+                                {selectedFileName && (
+                                    <span style={{ marginLeft: '10px' }}>{selectedFileName}</span>
+                                )}
                             </Grid>
 
 
