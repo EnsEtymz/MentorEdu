@@ -23,6 +23,7 @@ const Analytics = Loadable(lazy(() => import('app/views/dashboard/Analytics')));
 const CreateEdu = Loadable(lazy(() => import('app/views/mentor/CreateEdu')));
 const VideoListId = Loadable(lazy(() => import('app/views/mentor/VideoListId')))
 const VideoListAll = Loadable(lazy(() => import('app/views/student/AllVideoList')))
+const VideoHome = Loadable(lazy(() => import('app/views/mentor/VideoHome')))
 
 const routes = [
   {
@@ -59,6 +60,10 @@ const routes = [
       {
         path: '/student/videolistall',
         element: <VideoListAll />,
+      },
+      {
+        path: '/mentor/videoHome/:id',
+        element: <VideoHome />,
       },
     ]
   },
