@@ -7,6 +7,7 @@ import { Paragraph } from 'app/components/Typography';
 
 import { Formik } from 'formik';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 
 const FlexBox = styled(Box)(() => ({ display: 'flex', alignItems: 'center' }));
@@ -71,10 +72,31 @@ const JwtRegister = () => {
       });
       const jsonResponse = await response.json()
       if (jsonResponse.success === true) {
+        toast.success(jsonResponse.message, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
         navigate('/session/signin')
       }
       else {
-        navigate('/session/404')
+        toast.error(jsonResponse.message, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+
+
       }
 
       // İstek başarılı ise burada işlemler yapabilirsiniz
