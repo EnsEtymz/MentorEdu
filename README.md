@@ -3,11 +3,11 @@
 <p>In the project directory, you can run:
 use 2 terminals to start the project</p>
 
-<p>Terminal 1 for backend</p>
+<p>Terminal 1 for backend:</p>
 <h3 ><code>cd src/app/server</code></h3>
 <h3 ><code>npm start</code></h3>
 
-<p>Terminal 2 for frontend</p>
+<p>Terminal 2 for frontend:</p>
 <h3 id="npmstart"><code>npm start</code></h3>
 
 <p>Runs the app in the development mode.<br>
